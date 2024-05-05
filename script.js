@@ -79,8 +79,14 @@ function speakThis(message){
     if(!message == message.includes()){
         speech.text = 'I am not yet training for your qoustion, please ask another question, thank you' 
     }
-    if(message.includes('who are you')){
+    if(message.includes('who are you') || message.includes('what is your name')){
      speech.text = 'I am a Robot';
+    }
+    if(message.includes('who is your boss') || message.includes('who is your constructor')){
+     speech.text = 'Mr Blessing Ayoola';
+    }
+    if(message.includes('AI')){
+     speech.text = 'Yes, friend how are you ';
     }
     window.speechSynthesis.speak(speech)
     content.appendChild(showAImsg(speech.text))
