@@ -1,34 +1,37 @@
 const btn = document.querySelector(".talk")
 const content = document.querySelector(".content")
+const stop = document.querySelector ('.stop')
+const text = document.querySelector ('.Text')
+const close = document.getElementById ('close')
 
-// function speak(sentence){
-//     const text_speak = new SpeechSynthesisUtterance(sentence);
+function speak(sentence){
+    const text_speak = new SpeechSynthesisUtterance(sentence);
 
-//     text_speak.rate = 1;
-//     text_speak.pitch = 1;
+    text_speak.rate = 1;
+    text_speak.pitch = 1;
 
-//     window.speechSynthesis.speak(text_speak);
-// }
+    window.speechSynthesis.speak(text_speak);
+}
 
-//  function wishMe(){
-//     let day = new Date();
-//     let hr = day.getHours();
+ function wishMe(){
+    let day = new Date();
+    let hr = day.getHours();
 
-//     if(hr >= 0 && hr < 12){
-//         speak('Good morning Friend');
-//     }
-//     else if(hr > 12 && hr <= 17){
-//         speak('Good afternoon Friend'); 
-//     }
-//     else{
-//         speak('Good Evening Friend');
-//     }
-//  }
-//  window.addEventListener('load', ()=>{
-//     speak("AI Activated");
-//     // speak("Goin online");
-//     wishMe(); 
-//  }) 
+    if(hr >= 0 && hr < 12){
+        speak('Good morning Friend');
+    }
+    else if(hr > 12 && hr <= 17){
+        speak('Good afternoon Friend'); 
+    }
+    else{
+        speak('Good Evening Friend');
+    }
+ }
+ window.addEventListener('load', ()=>{
+    speak("AI Activated");
+    // speak("Goin online");
+    wishMe(); 
+ }) 
 //  const SpeechRecognition = window.SpeechRecognition|| window.webkitSpeechRecognition;
 //  const recognition = new SpeechRecognition();
 
@@ -79,14 +82,23 @@ function speakThis(message){
     if(!message == message.includes()){
         speech.text = 'I am not yet training for your qoustion, please ask another question, thank you' 
     }
-    if(message.includes('who are you') || message.includes('what is your name')){
-     speech.text = 'I am a Robot';
+    if(message.includes('who are you')){
+     speech.text = 'I a Vitual Assistant how can i help you';
+    }
+    if(message.includes('What is your name')){
+     speech.text = 'I am Robot';
+    }
+    if(message.includes('Do you understand Yoruba')){
+     speech.text = 'Yes i understand Yoruba Language, but am not yet training for the language';
     }
     if(message.includes('who is your boss') || message.includes('who is your constructor')){
-     speech.text = 'Mr Blessing Ayoola';
+     speech.text = 'Mr Ayoola Kolawole Blessing';
     }
     if(message.includes('AI')){
      speech.text = 'Yes, friend how are you ';
+    }
+    if(message.includes('can you tell my about myself?')){
+     speech.text = `No i can't tell you about yourself, you know about yourself by yourself`;
     }
     window.speechSynthesis.speak(speech)
     content.appendChild(showAImsg(speech.text))
@@ -107,6 +119,38 @@ recognition.onresult = function(e){
     speakThis(transcript);
 }
 
+
+
 btn.addEventListener("click", function(){
     recognition.start();
+      stop.style.display = 'block'
+      btn.style.display = 'none'
 })
+// function timeConsumingTask(){
+//     const duration = 1000;
+//     return new Promise(resolve =>{
+//       setTimeout(()=>{
+//         resolve();
+//     }, duration);
+//   })
+//   }
+stop.addEventListener("click", function(){
+    recognition.stop();
+    btn.style.display = 'block'
+    stop.style.display = 'none';
+      
+})
+text.addEventListener("click", function(){
+    content.style.display = 'block';    
+})
+
+close.addEventListener("click", function(){
+    content.style.display = 'none';    
+})
+
+
+
+
+
+
+ 
